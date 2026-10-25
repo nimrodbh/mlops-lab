@@ -1,0 +1,236 @@
+{
+ "runs": [
+  {
+   "info": {
+    "run_uuid": "8c8fc76e10ae484fbbf935a9c47d19a2",
+    "experiment_id": "1",
+    "run_name": "logreg-0.01",
+    "user_id": "ci",
+    "status": "FINISHED",
+    "start_time": 1792766251986,
+    "end_time": 1792766269762,
+    "artifact_uri": "mlflow-artifacts:/1/8c8fc76e10ae484fbbf935a9c47d19a2/artifacts",
+    "lifecycle_stage": "active",
+    "run_id": "8c8fc76e10ae484fbbf935a9c47d19a2"
+   },
+   "data": {
+    "metrics": [
+     {
+      "key": "accuracy",
+      "value": 0.975925925925926,
+      "timestamp": 1792766253415,
+      "step": 0
+     },
+     {
+      "key": "f1_macro",
+      "value": 0.9760631189731551,
+      "timestamp": 1792766253479,
+      "step": 0
+     },
+     {
+      "key": "train_accuracy",
+      "value": 0.9936356404136834,
+      "timestamp": 1792766253551,
+      "step": 0
+     }
+    ],
+    "params": [
+     {
+      "key": "model",
+      "value": "logreg"
+     },
+     {
+      "key": "C",
+      "value": "0.01"
+     },
+     {
+      "key": "seed",
+      "value": "0"
+     }
+    ],
+    "tags": [
+     {
+      "key": "mlflow.user",
+      "value": "ci"
+     },
+     {
+      "key": "mlflow.source.name",
+      "value": "train.py"
+     },
+     {
+      "key": "mlflow.source.type",
+      "value": "LOCAL"
+     },
+     {
+      "key": "mlflow.runName",
+      "value": "logreg-0.01"
+     }
+    ]
+   },
+   "inputs": {},
+   "outputs": {
+    "model_outputs": [
+     {
+      "model_id": "m-83ad607a63ab4941941706c3c16e9f61",
+      "step": 0
+     }
+    ]
+   }
+  },
+  {
+   "info": {
+    "run_uuid": "4f2b16580b9a44938c17b3810f73b9dd",
+    "experiment_id": "1",
+    "run_name": "logreg-0.01",
+    "user_id": "ci",
+    "status": "FINISHED",
+    "start_time": 1792766128527,
+    "end_time": 1792766146059,
+    "artifact_uri": "mlflow-artifacts:/1/4f2b16580b9a44938c17b3810f73b9dd/artifacts",
+    "lifecycle_stage": "active",
+    "run_id": "4f2b16580b9a44938c17b3810f73b9dd"
+   },
+   "data": {
+    "metrics": [
+     {
+      "key": "accuracy",
+      "value": 0.975925925925926,
+      "timestamp": 1792766131510,
+      "step": 0
+     },
+     {
+      "key": "f1_macro",
+      "value": 0.9760631189731551,
+      "timestamp": 1792766131592,
+      "step": 0
+     },
+     {
+      "key": "train_accuracy",
+      "value": 0.9936356404136834,
+      "timestamp": 1792766131655,
+      "step": 0
+     }
+    ],
+    "params": [
+     {
+      "key": "model",
+      "value": "logreg"
+     },
+     {
+      "key": "C",
+      "value": "0.01"
+     },
+     {
+      "key": "seed",
+      "value": "0"
+     }
+    ],
+    "tags": [
+     {
+      "key": "mlflow.user",
+      "value": "ci"
+     },
+     {
+      "key": "mlflow.source.name",
+      "value": "train.py"
+     },
+     {
+      "key": "mlflow.source.type",
+      "value": "LOCAL"
+     },
+     {
+      "key": "mlflow.runName",
+      "value": "logreg-0.01"
+     }
+    ]
+   },
+   "inputs": {},
+   "outputs": {
+    "model_outputs": [
+     {
+      "model_id": "m-99d9cad4b14a42ab916723f7b2000146",
+      "step": 0
+     }
+    ]
+   }
+  },
+  {
+   "info": {
+    "run_uuid": "87a10086a6f7466399098efec19a73be",
+    "experiment_id": "1",
+    "run_name": "logreg-0.01",
+    "user_id": "ci",
+    "status": "FINISHED",
+    "start_time": 1792765968321,
+    "end_time": 1792765987618,
+    "artifact_uri": "mlflow-artifacts:/1/87a10086a6f7466399098efec19a73be/artifacts",
+    "lifecycle_stage": "active",
+    "run_id": "87a10086a6f7466399098efec19a73be"
+   },
+   "data": {
+    "metrics": [
+     {
+      "key": "accuracy",
+      "value": 0.975925925925926,
+      "timestamp": 1792765969629,
+      "step": 0
+     },
+     {
+      "key": "f1_macro",
+      "value": 0.9760631189731551,
+      "timestamp": 1792765969714,
+      "step": 0
+     },
+     {
+      "key": "train_accuracy",
+      "value": 0.9936356404136834,
+      "timestamp": 1792765969779,
+      "step": 0
+     }
+    ],
+    "params": [
+     {
+      "key": "model",
+      "value": "logreg"
+     },
+     {
+      "key": "C",
+      "value": "0.01"
+     },
+     {
+      "key": "seed",
+      "value": "0"
+     }
+    ],
+    "tags": [
+     {
+      "key": "mlflow.user",
+      "value": "ci"
+     },
+     {
+      "key": "mlflow.source.name",
+      "value": "train.py"
+     },
+     {
+      "key": "mlflow.source.type",
+      "value": "LOCAL"
+     },
+     {
+      "key": "mlflow.runName",
+      "value": "logreg-0.01"
+     }
+    ]
+   },
+   "inputs": {},
+   "outputs": {
+    "model_outputs": [
+     {
+      "model_id": "m-16248760621846d28c8d3bfc10162716",
+      "step": 0
+     }
+    ]
+   }
+  }
+ ],
+ "next_page_token": "eyJvZmZzZXQiOiAzfQ=="
+}

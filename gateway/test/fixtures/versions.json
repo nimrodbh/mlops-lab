@@ -1,0 +1,40 @@
+{
+ "model_versions": [
+  {
+   "name": "digits-classifier",
+   "version": "2",
+   "creation_timestamp": 1792766382326,
+   "last_updated_timestamp": 1792766382326,
+   "current_stage": "None",
+   "description": "",
+   "source": "models:/m-83ad607a63ab4941941706c3c16e9f61",
+   "run_id": "8c8fc76e10ae484fbbf935a9c47d19a2",
+   "status": "READY",
+   "tags": [
+    {
+     "key": "accuracy",
+     "value": "0.975926"
+    }
+   ],
+   "run_link": ""
+  },
+  {
+   "name": "digits-classifier",
+   "version": "1",
+   "creation_timestamp": 1792766088216,
+   "last_updated_timestamp": 1792766088216,
+   "current_stage": "None",
+   "description": "",
+   "source": "models:/m-ea06f43ca81b4dc7924b2e3acdca03cf",
+   "run_id": "61bb2cde5d8c44989095fc760de40ab2",
+   "status": "READY",
+   "tags": [
+    {
+     "key": "accuracy",
+     "value": "0.962963"
+    }
+   ],
+   "run_link": ""
+  }
+ ]
+}

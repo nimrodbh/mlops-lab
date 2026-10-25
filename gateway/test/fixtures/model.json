@@ -1,0 +1,33 @@
+{
+ "registered_model": {
+  "name": "digits-classifier",
+  "creation_timestamp": 1792766087617,
+  "last_updated_timestamp": 1792766382326,
+  "latest_versions": [
+   {
+    "name": "digits-classifier",
+    "version": "2",
+    "creation_timestamp": 1792766382326,
+    "last_updated_timestamp": 1792766382326,
+    "current_stage": "None",
+    "description": "",
+    "source": "models:/m-83ad607a63ab4941941706c3c16e9f61",
+    "run_id": "8c8fc76e10ae484fbbf935a9c47d19a2",
+    "status": "READY",
+    "tags": [
+     {
+      "key": "accuracy",
+      "value": "0.975926"
+     }
+    ],
+    "run_link": ""
+   }
+  ],
+  "aliases": [
+   {
+    "alias": "production",
+    "version": "1"
+   }
+  ]
+ }
+}

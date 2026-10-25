@@ -1,0 +1,9 @@
+node_modules/
+dist/
+__pycache__/
+*.pyc
+.venv/
+mlruns/
+mlflow.db
+.pytest_cache/
+.ruff_cache/

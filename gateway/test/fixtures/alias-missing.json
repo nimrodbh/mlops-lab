@@ -1,0 +1,6 @@
+{
+ "error_code": "INVALID_PARAMETER_VALUE",
+ "message": "Registered model alias nope not found.",
+ "sqlstate": "KAM00",
+ "error_class": "INVALID_PARAMETER_VALUE"
+}

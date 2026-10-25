@@ -1,0 +1,111 @@
+name: ci
+on:
+  push:
+  pull_request:
+
+jobs:
+  trainer:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: trainer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt pytest ruff
+      - run: ruff check .
+      - run: pytest -q
+
+  gateway:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: gateway
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: gateway/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+
+  dashboard:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: dashboard
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: dashboard/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+
+  compose:
+    runs-on: ubuntu-latest
+    needs: [trainer, gateway, dashboard]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Start the stack
+        run: docker compose up -d --build --wait
+      - name: Two training sweeps (same seed, so two versions with equal accuracy)
+        run: |
+          docker compose --profile train run --rm trainer
+          docker compose --profile train run --rm trainer
+      - name: Smoke test through the dashboard's proxy
+        run: python3 scripts/smoke.py http://localhost:8080
+      - name: Logs on failure
+        if: failure()
+        run: docker compose logs --no-color
+      - run: docker compose down -v
+
+  kubernetes:
+    runs-on: ubuntu-latest
+    needs: [trainer, gateway, dashboard]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: helm/kind-action@v1
+        with:
+          cluster_name: mlops-lab
+          config: k8s/kind-config.yaml
+      - name: Build images and load them into the cluster
+        run: |
+          for svc in mlflow-server:mlflow gateway:gateway dashboard:dashboard trainer:trainer; do
+            dir="${svc%%:*}"; name="${svc##*:}"
+            docker build -t "mlops-lab/${name}:dev" "$dir"
+            kind load docker-image "mlops-lab/${name}:dev" --name mlops-lab
+          done
+      - name: Deploy
+        run: |
+          kubectl apply -k k8s
+          for d in mlflow gateway dashboard; do
+            kubectl -n mlops-lab rollout status "deploy/$d" --timeout=240s
+          done
+      - name: Two training sweeps as Kubernetes Jobs
+        run: |
+          for i in 1 2; do
+            job=$(kubectl create -f k8s/trainer-job.yaml -o name)
+            kubectl -n mlops-lab wait --for=condition=complete "$job" --timeout=420s
+          done
+      - name: Smoke test through the dashboard Service
+        run: |
+          kubectl -n mlops-lab port-forward svc/dashboard 8080:80 &
+          sleep 5
+          python3 scripts/smoke.py http://localhost:8080
+      - name: Cluster state on failure
+        if: failure()
+        run: |
+          kubectl -n mlops-lab get pods,svc,jobs -o wide
+          kubectl -n mlops-lab describe pods
+          kubectl -n mlops-lab logs --all-containers --prefix --tail=200 -l app || true
