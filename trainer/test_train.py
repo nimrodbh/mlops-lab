@@ -1,8 +1,9 @@
 import mlflow
 import mlflow.sklearn
 import pytest
-import train
 from mlflow.tracking import MlflowClient
+
+import train
 
 
 @pytest.fixture()
