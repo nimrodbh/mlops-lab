@@ -37,8 +37,8 @@ spec:
             periodSeconds: 20
             failureThreshold: 5
           resources:
-            requests: { cpu: 100m, memory: 256Mi }
-            limits: { memory: 1Gi }
+            requests: { cpu: 100m, memory: 512Mi }
+            limits: { memory: 1536Mi } # idle about 550Mi, about 920Mi right after a training sweep uploads its models
           volumeMounts:
             - name: data
               mountPath: /mlflow/data

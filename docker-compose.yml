@@ -3,6 +3,7 @@ services:
     build: ./mlflow-server
     ports: ["5000:5000"]
     volumes: ["mlflow-data:/mlflow/data"]
+    mem_limit: 1536m # same limit as the Kubernetes manifest, so memory problems show up here too
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:5000/health')"]
       interval: 5s

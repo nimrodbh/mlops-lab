@@ -4,6 +4,10 @@ WORKDIR /mlflow
 EXPOSE 5000
 # Host headers are checked (DNS-rebinding protection), so the in-cluster and compose names are listed explicitly.
 # One container, SQLite for metadata, a local folder for artifacts. Fine for a lab; a team would use Postgres and object storage.
+# MLflow 3 starts a background job runner and several consumer processes (about 230 MB each) that this project
+# does not use. With them the server needs about 1.7 GiB and was OOMKilled under a 1 GiB limit on Kubernetes;
+# without them it uses about 550 MiB.
+ENV MLFLOW_SERVER_ENABLE_JOB_EXECUTION=false
 CMD ["mlflow", "server", "--host", "0.0.0.0", "--port", "5000", \
      "--backend-store-uri", "sqlite:////mlflow/data/mlflow.db", \
      "--artifacts-destination", "/mlflow/data/artifacts", \
